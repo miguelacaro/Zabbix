@@ -24,13 +24,9 @@ function Curl($url,$header,$info){
     return json_decode($response);
 }
 
-/**
- * Same Curl command from command line
- * curl -i -X POST -H 'Content-Type: application/json' -d '{"jsonrpc": "2.0","method":"user.login","params":{"user":"Admin","password":"zabbix"},"auth": null,"id":0}' http://zabbixserver/zabbix/api_jsonrpc.php
- **/
 
-/**
-* JSON array format
+
+
 $logininfo = array(
   'jsonrpc' => '2.0',
   'method' => 'user.login',
@@ -41,9 +37,9 @@ $logininfo = array(
   'id' => 1,
 );
 $data = json_encode($logininfo);
-**/
 
-$logininfo = '{"jsonrpc": "2.0","method":"user.login","params":{"user":"Admin","password":"zabbix"},"auth": null,"id":0}';
+
+//$logininfo = '{"jsonrpc": "2.0","method":"user.login","params":{"user":"Admin","password":"zabbix"},"auth": null,"id":0}';
 $result = Curl($url,$header,$logininfo);
 //Result is an object
 $token = $result->result;
