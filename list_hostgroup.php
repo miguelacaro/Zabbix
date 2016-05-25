@@ -33,11 +33,11 @@ $token = $result->result;
 
 $hostinfo = array(
     'jsonrpc' => '2.0',
-    'method' => 'host.get',
+    'method' => 'hostgroup.get',
     "params" =>array(
-         "output" => ["hostid","name"],
+         "output" => ["hostgroupid","name"],
          "filter" => array(
-             "host" =>"",
+             "hostgroup" =>"",
             )
         ),
     "auth"=>$token,
