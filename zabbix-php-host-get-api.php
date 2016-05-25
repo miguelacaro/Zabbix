@@ -1,6 +1,6 @@
 <?php
 /**
- *  Zabbix Php Api
+ *  Zabbix Php Api : host.get 
  * author: Alejandro Caro
  */
  
