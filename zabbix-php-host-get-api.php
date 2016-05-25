@@ -2,7 +2,6 @@
 /**
  *  Zabbix Php Api
  * author: Alejandro Caro
- * 
  */
  
  // API Settings 
@@ -11,7 +10,7 @@ $header = array("Content-type: application/json-rpc");
 $user = 'Admin';
 $password = 'zabbix';
 
-//curl Function
+//curl options
 function Curl($url,$header,$info){
     $ch = curl_init();
     curl_setopt($ch,CURLOPT_URL, $url);
@@ -24,9 +23,6 @@ function Curl($url,$header,$info){
     return json_decode($response);
 }
 
-
-
-
 $logininfo = array(
   'jsonrpc' => '2.0',
   'method' => 'user.login',
@@ -36,25 +32,13 @@ $logininfo = array(
   ),
   'id' => 1,
 );
+//$logininfo = '{"jsonrpc": "2.0","method":"user.login","params":{"user":"Admin","password":"zabbix"},"auth": null,"id":0}';
 $data = json_encode($logininfo);
 
 
-//$logininfo = '{"jsonrpc": "2.0","method":"user.login","params":{"user":"Admin","password":"zabbix"},"auth": null,"id":0}';
 $result = Curl($url,$header,$logininfo);
 //Result is an object
 $token = $result->result;
-
-
-/**
-* HOST LIST
-* Curl from command line
-* curl -i -X POST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method":"host.get","params":{"output":["hostid","name"],"filter":{"host":""}},"auth":"e81981f57500ede530007104df178f08","id":1}' http://zabbix.54im.com/zabbix/api_jsonrpc.php
-*
-*  JSON STRING FORMAT 
-* $hostinfo = '{"jsonrpc":"2.0","method":"host.get","params":{"output":["hostid","name"],"filter":{"host":""}},"auth":"e81981f57500ede530007104df178f08","id":1}';
-*
-* JSON ARRAY FORMAT
-*/
 
 $hostinfo = array(
     'jsonrpc' => '2.0',
@@ -68,6 +52,7 @@ $hostinfo = array(
     "auth"=>$token,
     "id"=>1
 );
+// $hostinfo = '{"jsonrpc":"2.0","method":"host.get","params":{"output":["hostid","name"],"filter":{"host":""}},"auth":"e81981f57500ede530007104df178f08","id":1}';
 $data = json_encode($hostinfo);
 //print_r($data);
 $result = Curl($url,$header,$data);
