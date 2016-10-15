@@ -5,7 +5,7 @@
  */
  
  // API Settings 
-$url = 'http://192.168.99.100/api_jsonrpc.php';
+$url = 'http://XXX.XXX.XXX.XXX/api_jsonrpc.php';
 $header = array("Content-type: application/json-rpc");
 $user = 'Admin';
 $password = 'zabbix';
